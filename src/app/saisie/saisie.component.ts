@@ -1,5 +1,6 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../data.service';
 
 @Component({
@@ -7,20 +8,29 @@ import { DataService } from '../data.service';
   standalone: true,
   imports: [FormsModule],
   templateUrl: './saisie.component.html',
-  styleUrls: ['./saisie.component.scss']
+  styleUrls: ['./saisie.component.scss'],
 })
 export class SaisieComponent {
+  route = inject(ActivatedRoute);
 
-  @ViewChild('saisieInput', { static: true }) saisieInput!: ElementRef<HTMLInputElement>;
-
-  title: string;
-  calculate: string;
-  selectedUnity: string;
+  @ViewChild('saisieInput', { static: true })
+  saisieInput!: ElementRef<HTMLInputElement>;
+  index?: number;
+  title: string = '';
+  calculate: string = '';
+  selectedUnity: string = '';
 
   constructor(private dataService: DataService) {
-    this.title = '';
-    this.calculate = '';
-    this.selectedUnity = 'unity1';
+    this.route.params.subscribe((params) => {
+      this.index = parseInt(params['index']);
+      this.dataService.dataSubject.subscribe((data) => {
+        if (this.index === undefined) return;
+        const item = data[this.index];
+        this.title = item.title;
+        this.calculate = item.calculate;
+        this.selectedUnity = item.selectedUnity;
+      });
+    });
   }
 
   appendToSaisie(value: string) {
@@ -43,7 +53,11 @@ export class SaisieComponent {
   }
 
   ValidateSaisie() {
-    const newData = { title: this.title, calculate: this.calculate, selectedUnity: this.selectedUnity };
+    const newData = {
+      title: this.title,
+      calculate: this.calculate,
+      selectedUnity: this.selectedUnity,
+    };
     this.dataService.addData(newData);
     this.clearSaisie();
     console.log('ValidateSaisie');
@@ -53,9 +67,12 @@ export class SaisieComponent {
   }
 
   sendData() {
-    const newData = { title: this.title, calculate: this.calculate, selectedUnity: this.selectedUnity };
+    const newData = {
+      title: this.title,
+      calculate: this.calculate,
+      selectedUnity: this.selectedUnity,
+    };
     this.dataService.addData(newData);
     this.clearSaisie();
   }
-
 }

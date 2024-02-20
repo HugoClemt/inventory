@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataService } from '../data.service';
 import { Data } from '../interface/data';
 
@@ -13,10 +14,10 @@ import { Data } from '../interface/data';
 export class InventoryComponent implements OnInit {
   data: Data[] = [];
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService, private router: Router) {}
 
   ngOnInit(): void {
-    this.dataService.getData().subscribe((data) => {
+    this.dataService.dataSubject.subscribe(data => {
       this.data = data;
     });
   }
@@ -59,5 +60,9 @@ export class InventoryComponent implements OnInit {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  }
+
+  updateData(index: number): void {
+    this.router.navigate(['/saisie', index]);
   }
 }

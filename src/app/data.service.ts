@@ -7,15 +7,11 @@ import { Data } from './interface/data';
 })
 export class DataService {
   private data: Data[] = [];
-  private dataSubject: BehaviorSubject<Data[]> = new BehaviorSubject(this.data);
+  dataSubject: BehaviorSubject<Data[]> = new BehaviorSubject(this.data);
 
   constructor() {
     this.loadDataFromLocalStorage();
    }
-
-  getData(): Observable<Data[]> {
-    return this.dataSubject.asObservable();
-  }
 
   addData(newData: Data): void {
     this.data.push(newData);
