@@ -1,11 +1,11 @@
-<div class="container-saisie w-4/5 h-3/4">
+<div class="container-saisie mx-auto p-5 w-4/5 h-3/4">
   <div class="title-saisie">
-    <input type="text" class="input-title w-full" placeholder="Titre"/>
+    <input type="text" class="input-title w-full border-solid border-2 rounded-lg" [(ngModel)]="title" placeholder="Titre"/>
   </div>
-  <div class="saisie">
-    <input type="text" class="input-saisie w-full" #saisieInput [(ngModel)]="calculate"/>
+  <div class="saisie mt-2">
+    <input type="text" class="input-saisie w-full border-solid border-2 rounded-lg" #saisieInput [(ngModel)]="calculate" placeholder="Saisie"/>
   </div>
-  <div class="resultat d-flex">
+  <div class="resultat d-flex border-solid border-2 rounded-lg mt-2">
     <input type="text" class="input-resultat w-2/3" [value]="calculate" placeholder="Résultat" />
     <select class="input-unity w-1/3" [(ngModel)]="selectedUnity">
       <option value="unity1">m²</option>
@@ -18,28 +18,28 @@
 </div>
 
 <div class="grid grid-cols-4 gap-4 ">
-    <button class="bg-gray-200 p-4" (click)="appendToSaisie('(')">(</button>
-    <button class="bg-gray-200 p-4" (click)="appendToSaisie(')')">)</button>
-    <button class="bg-gray-200 p-4" (click)="clearSaisie()">AC</button>
-    <button class="bg-gray-200 p-4" (click)="appendToSaisie('/')">÷</button>
+    <button class="bg-gray-200 p-4 rounded-lg" (click)="appendToSaisie('(')">(</button>
+    <button class="bg-gray-200 p-4 rounded-lg" (click)="appendToSaisie(')')">)</button>
+    <button class="bg-gray-200 p-4 rounded-lg" (click)="clearSaisie()">AC</button>
+    <button class="bg-gray-200 p-4 rounded-lg" (click)="appendToSaisie('/')">÷</button>
   
-    <button class="bg-gray-200 p-4" (click)="appendToSaisie('7')">7</button>
-    <button class="bg-gray-200 p-4" (click)="appendToSaisie('8')">8</button>
-    <button class="bg-gray-200 p-4" (click)="appendToSaisie('9')">9</button>
-    <button class="bg-gray-200 p-4" (click)="appendToSaisie('*')">x</button>
+    <button class="bg-gray-200 p-4 rounded-lg" (click)="appendToSaisie('7')">7</button>
+    <button class="bg-gray-200 p-4 rounded-lg" (click)="appendToSaisie('8')">8</button>
+    <button class="bg-gray-200 p-4 rounded-lg" (click)="appendToSaisie('9')">9</button>
+    <button class="bg-gray-200 p-4 rounded-lg" (click)="appendToSaisie('*')">x</button>
   
-    <button class="bg-gray-200 p-4" (click)="appendToSaisie('4')">4</button>
-    <button class="bg-gray-200 p-4" (click)="appendToSaisie('5')">5</button>
-    <button class="bg-gray-200 p-4" (click)="appendToSaisie('6')">6</button>
-    <button class="bg-gray-200 p-4" (click)="appendToSaisie('-')">-</button>
+    <button class="bg-gray-200 p-4 rounded-lg" (click)="appendToSaisie('4')">4</button>
+    <button class="bg-gray-200 p-4 rounded-lg" (click)="appendToSaisie('5')">5</button>
+    <button class="bg-gray-200 p-4 rounded-lg" (click)="appendToSaisie('6')">6</button>
+    <button class="bg-gray-200 p-4 rounded-lg" (click)="appendToSaisie('-')">-</button>
   
-    <button class="bg-gray-200 p-4" (click)="appendToSaisie('1')">1</button>
-    <button class="bg-gray-200 p-4" (click)="appendToSaisie('2')">2</button>
-    <button class="bg-gray-200 p-4" (click)="appendToSaisie('3')">3</button>
-    <button class="bg-gray-200 p-4" (click)="appendToSaisie('+')">+</button>
+    <button class="bg-gray-200 p-4 rounded-lg" (click)="appendToSaisie('1')">1</button>
+    <button class="bg-gray-200 p-4 rounded-lg" (click)="appendToSaisie('2')">2</button>
+    <button class="bg-gray-200 p-4 rounded-lg" (click)="appendToSaisie('3')">3</button>
+    <button class="bg-gray-200 p-4 rounded-lg" (click)="appendToSaisie('+')">+</button>
   
-    <button class="bg-gray-200 p-4" (click)="appendToSaisie('0')">0</button>
-    <button class="bg-gray-200 p-4" (click)="appendToSaisie(',')">,</button>
-    <button class="bg-gray-200 p-4" (click)="calculateResult()">=</button>
-    <button class="bg-gray-200 p-4">↵</button>
+    <button class="bg-gray-200 p-4 rounded-lg" (click)="appendToSaisie('0')">0</button>
+    <button class="bg-gray-200 p-4 rounded-lg" (click)="appendToSaisie(',')">,</button>
+    <button class="bg-gray-200 p-4 rounded-lg" (click)="calculateResult()">=</button>
+    <button class="bg-gray-200 p-4 rounded-lg" (click)="ValidateSaisie()">↵</button>
 </div>

@@ -1,18 +1,27 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-saisie',
   standalone: true,
   imports: [FormsModule],
   templateUrl: './saisie.component.html',
-  styleUrl: './saisie.component.scss'
+  styleUrls: ['./saisie.component.scss']
 })
 export class SaisieComponent {
 
   @ViewChild('saisieInput', { static: true }) saisieInput!: ElementRef<HTMLInputElement>;
-  calculate: string = "";
-  selectedUnity: string = 'unity1';
+
+  title: string;
+  calculate: string;
+  selectedUnity: string;
+
+  constructor(private dataService: DataService) {
+    this.title = '';
+    this.calculate = '';
+    this.selectedUnity = 'unity1';
+  }
 
   appendToSaisie(value: string) {
     const currentInputValue = this.saisieInput.nativeElement.value;
@@ -31,6 +40,22 @@ export class SaisieComponent {
     } catch (error) {
       this.calculate = 'Error';
     }
+  }
+
+  ValidateSaisie() {
+    const newData = { title: this.title, calculate: this.calculate, selectedUnity: this.selectedUnity };
+    this.dataService.addData(newData);
+    this.clearSaisie();
+    console.log('ValidateSaisie');
+    console.log('Titre:', this.title);
+    console.log('Résultat:', this.calculate);
+    console.log('Unité:', this.selectedUnity);
+  }
+
+  sendData() {
+    const newData = { title: this.title, calculate: this.calculate, selectedUnity: this.selectedUnity };
+    this.dataService.addData(newData);
+    this.clearSaisie();
   }
 
 }
