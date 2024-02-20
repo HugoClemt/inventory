@@ -3,4 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
+button {
+    @apply bg-gray-200 hover:bg-gray-500 p-4 rounded-lg;
+}
