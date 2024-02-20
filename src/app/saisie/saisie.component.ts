@@ -45,6 +45,7 @@ export class SaisieComponent {
 
   calculateResult() {
     const expression = this.saisieInput.nativeElement.value;
+    console.log('expression:', expression);
     try {
       this.calculate = eval(expression);
     } catch (error) {
