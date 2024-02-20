@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterModule],
+  imports: [CommonModule, RouterOutlet, RouterModule, FormsModule, ReactiveFormsModule],
   template:`
     <div class="p-2 w-full bg-slate-600 flex gap-2  text-dark">
         <a class="hover:text-sky-200" routerLink="/saisie">Saisie</a>
